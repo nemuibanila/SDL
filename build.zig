@@ -136,6 +136,7 @@ pub fn build(b: *std.Build) void {
         lib.addCSourceFiles(.{ .files = files.toOwnedSlice() catch @panic("OOM") });
         lib.addConfigHeader(config_header);
         lib.installConfigHeader(config_header);
+        lib.installHeader(config_header.getOutput(), "SDL2/SDL_config.h");
 
         const revision_header = b.addConfigHeader(.{
             .style = .{ .cmake = b.path("include/SDL_revision.h.cmake") },
